@@ -1,5 +1,5 @@
-const {Client, Attachment} = require('discord.js');
-const bot = new Client();
+const Discord = require('discord.js');
+const bot = new Discord.Client();
 
 const token = 'NTkyOTYzMzgxMjcxNzI0MDYz.XRKm1w.rOvnNpMLUZxCVdoKcM4kqcBjmhs';
 
@@ -18,6 +18,7 @@ bot.on('guildMemberAdd', member =>{
     channel.send(`Welcome to the server ${member}!`)
 
 });
+
 
 bot.on('message', msg=>{
 
@@ -54,18 +55,14 @@ bot.on('message', msg=>{
             .setFooter('I am broke')
             msg.channel.sendEmbed(Name)
             break;
-        case 'ikonikimage':
-            const attachment = new Attachment('https://dotesports-media.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2019/03/05103931/c1jpg-770x513-770x513.jpg')   
-            msg.channel.send(msg.author, attachment);   
-        break;
-        case 'dog':
-            const attachment2 = new Attachment('./zoey.jpg');
-            msg.channel.send(attachment2)
-        break;    
-        case 'rules':
-            const rules = new Attachment('./rules.txt');
-            msg.channel.send(rules);  
-        break;  
+        case 'help':
+            const help = new Discord.RichEmbed()
+            .setTitle('Help')
+            .addField('Commands', 'My current commands are ban, kick, purge, website, ikonik, wonder, honor, and twitter.')
+            .setColor(0xF52F05)
+            .setThumbnail(msg.author.avatarURL)
+            msg.channel.sendEmbed(help)
+        break;   
         case 'kick':
             if(!msg.member.roles.find(r => r.name === "Moderator")) return msg.channel.send('You can\'t do that dummy. lol')
             const user = msg.mentions.users.first();
@@ -114,9 +111,12 @@ bot.on('message', msg=>{
                 return msg.channel.send('You can\'t do that dummy. lol')
             msg.reply('pong')
         break;
+        case 'nigga':
+            msg.channel.send('https://www.youtube.com/watch?v=2ZIpFytCSVc')
+        break;
     }
     
-    if(msg.content === "miami"){
+    if(msg.content === "Miami"){
         msg.reply('Miami is best MM');
     }
 }) 
